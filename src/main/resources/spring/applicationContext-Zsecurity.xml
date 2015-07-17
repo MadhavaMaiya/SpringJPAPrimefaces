@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http security="none" pattern="/*/Login.jsf" />
+	<http security="none" pattern="/javax.faces.resource/**" />
+	<http pattern="/css/**" security="none" />
+    <http pattern="/images/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/resources/**" security="none" />
+	
+	<!-- Use below entry for default login -->  
+	<http entry-point-ref="defaultEntryPoint" authentication-manager-ref="authenticationManager">
+		<intercept-url pattern="/pages/**" access="ROLE_USER,ROLE_DEFAULT" />
+		<custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER" />
+		<custom-filter ref="logoutFilter" position="LOGOUT_FILTER" />
+	</http>
+	<!-- Use above entry for default login -->
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- Holds the location of the login form in the loginFormUrl property, and uses that to build a redirect URL to the login page.  -->
+	<beans:bean id="defaultEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"> 
+	    <beans:property name="loginFormUrl" value="/pages/Login.jsf" /> 
+	    <beans:property name="forceHttps" value="false" /> 
+	</beans:bean> 
+
+	<beans:bean id="loggerListener"
+		class="org.springframework.security.authentication.event.LoggerListener" />
+
+	<beans:bean id="authenticationFilter"
+		class="com.madhava.filter.security.CustomAuthenticationProcessingFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
+		<beans:property name="authenticationSuccessHandler">
+			<beans:bean
+				class="com.madhava.handler.DefaultAuthenticationSuccessionHandler">
+			</beans:bean>
+		</beans:property>
+		<beans:property name="authenticationFailureHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<beans:property name="defaultFailureUrl" value="/pages/Login.jsf?login_error=1" />
+				<beans:property name="useForward" value="false" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="logoutFilter" class="com.madhava.filter.security.CustomLogoutFilter">
+		<beans:constructor-arg ref="logoutSuccessionHandler" />
+		<beans:constructor-arg>
+			<beans:bean
+				class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
+				<beans:property name="invalidateHttpSession" value="true" />
+			</beans:bean>
+		</beans:constructor-arg>
+		<beans:property name="filterProcessesUrl" value="/spring/logout" />
+	</beans:bean>
+	
+</beans:beans>

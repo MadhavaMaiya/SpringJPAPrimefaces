@@ -1,0 +1,79 @@
+@CHARSET "ISO-8859-1";
+
+.banner h1 {
+    color: #555;
+    font-family: 'Open Sans',arial;
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+.banner h2 {
+    color: #555;
+    font-family: 'Open Sans',arial;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.signin-card {
+    padding: 40px;
+    width: 274px;
+}
+.signin-card .profile-img {
+    border-radius: 50%;
+    display: block;
+    height: 96px;
+    margin: 0 auto 10px;
+    width: 96px;
+}
+.signin-card .profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 0;
+    min-height: 1em;
+    text-align: center;
+}
+.signin-card input[type="email"], .signin-card input[type="password"], .signin-card input[type="text"], .signin-card input[type="submit"] {
+    box-sizing: border-box;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+.signin-card #Email, .signin-card #Passwd, .signin-card .captcha {
+    direction: ltr;
+    font-size: 16px;
+    height: 44px;
+}
+.signin-card #Email + .stacked-label {
+    margin-top: 15px;
+}
+.signin-card #reauthEmail {
+    box-sizing: border-box;
+    color: #404040;
+    display: block;
+    font-size: 14px;
+    line-height: 2;
+    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 0 8px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.one-google p {
+    color: #555;
+    font-size: 14px;
+    margin: 0 0 10px;
+    text-align: center;
+}
+.one-google p.create-account, .one-google p.switch-account {
+    margin-bottom: 60px;
+}
+.one-google img {
+    display: block;
+    height: 17px;
+    margin: 10px auto;
+    width: 210px;
+}

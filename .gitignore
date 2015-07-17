@@ -1,0 +1,11 @@
+target
+build
+lib
+bin
+test-output/
+.metadata
+.gradle
+.classpath
+.project
+.settings
+.env

@@ -1,0 +1,41 @@
+
+//Lookup Category
+insert into test.lookupcategory values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'SEX',1);
+insert into test.lookupcategory values(2,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MARITALSTATUS',1);
+insert into test.lookupcategory values(3,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'NATIONALITY',1);
+insert into test.lookupcategory values(4,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'SALUTATION',1);
+insert into test.lookupcategory values(5,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'USERTYPE',1);
+insert into test.lookupcategory values(6,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FEATURE_CATEGORY',1);
+insert into test.lookupcategory values(7,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'PRIVILEGETYPE',1);
+//Lookup Entity
+insert into test.lookupentity values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Male','SEX01','MALE',1,1);
+insert into test.lookupentity values(2,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FEMALE','SEX01','FEMALE',1,1);
+insert into test.lookupentity values(3,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MARIIED','MAR001','MARRIED',1,2);
+insert into test.lookupentity values(4,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'SINGLE','MAR002','SINGLE',1,2);
+insert into test.lookupentity values(5,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'SEPERATED','MAR003','SEPERATED',1,2);
+insert into test.lookupentity values(6,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'INDIAN','NAT001','INDIAN',1,3);
+insert into test.lookupentity values(7,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FRENCH','NAT002','FRENCH',1,3);
+insert into test.lookupentity values(8,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'AMERICAN','NAT003','AMERICAN',1,3);
+insert into test.lookupentity values(9,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MR','SAL001','MR.',1,4);
+insert into test.lookupentity values(10,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MRS','SAL002','MRS.',1,4);
+insert into test.lookupentity values(11,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'DR','SAL003','DR.',1,4);
+insert into test.lookupentity values(12,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'ADMIN','USERTYPE001','ADMIN',1,5);
+insert into test.lookupentity values(13,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'EMPLOYEE','FEATURE_CATEGORY001','EMPLOYEE',1,6);
+insert into test.lookupentity values(14,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'AUTO','PRIVILEGETYPE001','AUTO',1,7);
+insert into test.lookupentity values(15,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'ASSIGNED','PRIVILEGETYPE002','ASSIGNED',1,7);
+//Country
+insert into test.country values(1,'IND','INDIA',1,'2014-08-23 19:25:38',NULL,NULL,1,'+91-',1,1,'INDIAN',1,NULL);
+//State
+insert into test.state values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,1,'KARNATAKE','KAR','KARNATAKE',1);
+//District
+insert into test.district values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'BNG','Capital of Karnataka','BANGALORE',1,1);
+//City
+insert into test.city values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,'BNG','BANGALORE','Capital of Karnataka',1,1,1);
+//Address
+insert into test.address values(1,'Address','Address1','123456','Place',1,1,1,1);
+//Branch and Site
+insert into test.orgstructure values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MIS-BLR','MIS-BLR','MAIYA INFO SYSTEM',1,'CST-001',1,1,NULL,'TIN-001');
+insert into test.orgstructure values(2,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MIS-BLR-WHITEFIELD','MIS-WFD','MAIYA INFO SYSTEM',1,'CST-002',1,1,1,'TIN-002');
+//User
+insert into test.enterpriseuser values(1,'madhava.maiya@gmail.com',1,1,1,NULL,1,0,0,'63c0ebe8a05bbbc7eecece89ed414e02',0,0,NULL,NULL,"Madhava Maiya","MAIYAM",12);
+insert into test.hisuser values(1,1,"MAIYAM");

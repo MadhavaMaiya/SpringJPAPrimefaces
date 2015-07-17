@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd
+		http://www.springframework.org/schema/oxm 
+ 		http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
+
+	<!--This tells Spring that you intend to use annotation-based wiring in Spring -->
+	<context:annotation-config />
+
+	<task:annotation-driven />
+	<!-- This is used to get load and resolve the properties files that reside 
+		in the classpath It doesn't support multiple locations listed individually 
+		but you can use the * wilcard to load multiple files. -->
+	<context:property-placeholder location="classpath:application.properties" />
+
+	<!-- Here the configProperties bean will be a java.util.Properties that 
+		contains all of the entries in the file named application.properties -->
+	<util:properties id="configProperties" location="classpath:application.properties" />
+
+	<!-- component-scan is used to scan a package and its subpackages recursively 
+		for annotated classes with @Component, @Service, @Repository, @Aspect and 
+		such. When such classes found, they'll be registered as a bean in the application 
+		context. -->
+	<context:component-scan base-package="com.madhava" scoped-proxy="no" />
+	
+	<!-- This is for configuring the transactional behavior based on annotations. 
+		By default the txManager wired, should have the bean name "transactionManager" 
+		but you can also specify custom a bean name with the transaction-manager 
+		parameter. -->
+	<tx:annotation-driven transaction-manager="transaction-Manager" />
+
+	<!-- <aop:aspectj-autoproxy /> -->
+
+	<!-- This is the convenient way to set up an EntityManagerFactory and inject 
+		it into the DAO's afterwards. JNDI Lookup can also be used here. By default 
+		configuration file in META-INF/persistence.xml is used. Parameters are located 
+		in application.properties file. -->
+	<bean id="entityManagerFactory" depends-on="transaction-Manager"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="madhavaPersistanceUnit" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="databasePlatform" value="${jdbc.dialect}" />
+				<property name="generateDdl" value="${jdbc.generateDDL}" />
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- Data Source which is defined by a JDBC driver. 
+	 DriverManagerDataSource returns a new connection every time that a new connection is required.  -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+	
+	<!--
+		<bean id="sessionFactory" factory-bean="entityManagerFactory" factory-method="getSessionFactory" />
+	
+		This class is a plain old JDBC Driver configuration and it's not an actual connection pool.
+		Parameters are located in application.properties file.
+	-->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${database.driver}"/>
+		<property name="url" value="${database.uri}"/>
+		<property name="username" value="${database.username}"/>
+		<property name="password" value="${database.password}"/> -->
+	<!--<property name="initialSize" value="10" />
+		<property name="maxIdle" value="30" />
+		<property name="maxActive" value="50" />-->
+	<!-- <property name="logAbandoned" value = "true"/>
+		<property name="removeAbandoned" value = "true"/>
+		</bean> -->
+
+
+	
+	<!-- <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/userManagementDB" 
+		/> -->
+
+	<!-- <jee:jndi-lookup id="startupProperties" jndi-name="java:comp/env/sunray/startupProperties" 
+		/> <jee:jndi-lookup id="mailSession" jndi-name="mail/Session" resource-ref="true" 
+		/> -->
+
+	<!-- This binds an entity manager from the specified entityManagerFactory 
+		to the thread for transactional data access. -->
+	<bean id="transaction-Manager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- This class translates native resource exceptions to Spring's DataAccessException 
+		hierarchy. It's applied to any bean that carries the Repository annotation, 
+		hence all our DAO classes. -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- This class processes the PersistenceUnit/PersistenceContext annotations 
+		to inject the corresponding EntityManagerFactory/EntityManager -->
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="sessionMap" class="java.util.HashMap" scope="session">
+		<constructor-arg>
+			<value type="int">2</value>
+		</constructor-arg>
+		<aop:scoped-proxy />
+	</bean>
+
+	<bean id="applicationMap" class="java.util.HashMap">
+		<constructor-arg>
+			<value type="int">2</value>
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<value>
+				resource.loader=
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
+
+</beans>
