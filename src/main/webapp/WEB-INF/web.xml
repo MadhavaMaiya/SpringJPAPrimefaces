@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 	<display-name>User Management</display-name>
 
@@ -12,6 +11,35 @@
 		<param-value>classpath*:spring/applicationContext*.xml</param-value>
 	</context-param>
 
+	<!-- Change to "Production" when you are ready to deploy -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	
+	<context-param>
+    	<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+    	<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+    	<param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
+    	<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.SUBMIT</param-name>
+		<param-value>partial</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>afternoon</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
 	<!-- The Bootstrap listener to start up and shut down Spring's root WebApplicationContext. 
 		It is registered to Servlet Container -->
@@ -20,14 +48,9 @@
 	</listener>
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener</listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
-
-	<!-- Project Stage Level -->
-	<context-param>
-		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
-	</context-param>
 
 	<filter>
 		<filter-name>requestContextFilter</filter-name>
@@ -54,18 +77,18 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<filter>
-	    <filter-name>threadLogger</filter-name>
-	    <filter-class>com.madhava.filter.HttpThreadLogFilter</filter-class>
+		<filter-name>threadLogger</filter-name>
+		<filter-class>com.madhava.filter.HttpThreadLogFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
 		<filter-name>threadLogger</filter-name>
 		<url-pattern>*.jsf</url-pattern>
 	</filter-mapping>
-	
-	
+
+
 	<!-- Welcome Page -->
 	<welcome-file-list>
 		<welcome-file>/pages/index.xhtml</welcome-file>

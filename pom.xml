@@ -52,26 +52,26 @@
 			<version>3.2.8.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
 			<version>3.2.8.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>aopalliance</groupId>
 			<artifactId>aopalliance</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.7.4</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -151,7 +151,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.1.6.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-webflow</artifactId>
@@ -173,9 +173,24 @@
 
 		<!-- Primefaces library -->
 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>5.1</version>
+			<version>5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
@@ -185,16 +200,12 @@
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>3.0.0</version>
+			<version>3.1.0</version>
 		</dependency>
-
 
 		<!-- Hibernate library -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.1.0.Final</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
+			<version>4.1.0.Final</version> <scope>compile</scope> </dependency> -->
 
 		<!-- JPA Hibernate related jars -->
 		<!-- Hibernate related dependencies -->
@@ -324,27 +335,20 @@
 			<scope>compile</scope>
 		</dependency>
 		<!-- Mail Dependencies -->
-		
-		<!--  Servlet related -->
+
+		<!-- Servlet related -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
-			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-			<scope>compile</scope>
-		</dependency>
-		<!--  Servlet related -->
-		
+		<!-- Servlet related -->
+
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>7.0.52</version>
 		</dependency>
-		
+
 	</dependencies>
 </project>
