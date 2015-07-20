@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 .ui-widget {
  font-family: Verdana, Arial, sans-serif !important;
 }
@@ -1597,7 +1596,7 @@ label {
   color: #a9b6bc;
 }
 /*Style For Button ------------------------------------------------------------------------------------- */
-.blueButton .ui-button {
+.ui-button {
   outline: none;
   border-radius: 2px !important;
   -webkit-border-radius: 2px !important;
