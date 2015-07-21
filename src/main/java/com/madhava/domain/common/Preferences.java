@@ -49,7 +49,7 @@ public class Preferences implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "userCode", nullable = false, unique = true)
+	@Column(name = "USER_CODE", nullable = false, unique = true)
 	private String userCode;
 
 	@ManyToOne
@@ -72,9 +72,6 @@ public class Preferences implements Serializable {
 	
 	@Column(name="LANGUAGE")
 	private String language="en";
-	
-	@Column(name="DASHBOARDLAYOUT") //defaults to 3 column layout
-	private Integer dashboardLayout = Integer.valueOf(3);
 	
 	@ManyToOne @JoinColumn(name="APPLICATION_PAGE", nullable=false)
 	@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
@@ -190,20 +187,6 @@ public class Preferences implements Serializable {
 	 */
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	/**
-	 * @return the dashboardLayout
-	 */
-	public Integer getDashboardLayout() {
-		return dashboardLayout;
-	}
-
-	/**
-	 * @param dashboardLayout the dashboardLayout to set
-	 */
-	public void setDashboardLayout(Integer dashboardLayout) {
-		this.dashboardLayout = dashboardLayout;
 	}
 
 	/**

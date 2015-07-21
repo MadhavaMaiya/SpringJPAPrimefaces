@@ -1,42 +1,35 @@
-<html xmlns="http://www.w3.org/1999/xhtml"  
-     xmlns:h="http://java.sun.com/jsf/html"      
-      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">  
- <h:body>
-     <h:form>      
-	     <table> 
-		     <tr>
-		     	<td><h:outputLabel for="id" value="Id : " /></td>
-		     	<td><p:inputText id="id" value="1">
-		     			<f:converter converterId="javax.faces.Integer"/>
-		     		    <p:ajax event="blur" update="idMsg" />
-		     		</p:inputText>
-		     		<p:message id="idMsg" for="id" display="icon"/> 
-		     	</td>
-		     </tr>
-		     <tr>
-		     	<td><h:outputLabel for="name" value="Name : " /></td>
-		     	<td><p:inputText id="name" value="MMA">
-		     			<f:validateLength minimum="5" /> 
-		     			<p:ajax event="blur" update="nameMsg" />
-		     		</p:inputText>
-		     		<p:message id="nameMsg" for="name" display="icon"/> 
-		     	</td>
-		     </tr>
-		     <tr>
-		     	<td><h:outputLabel for="surname" value="Surname : " /></td>   
-		     	<td><p:inputText id="surname" value="MMA"> 
-		     			<f:validateLength minimum="5" /> 
-		     			<p:ajax event="blur" update="surnameMsg" />  
-		     		</p:inputText>
-		     		<p:message id="surnameMsg" for="surname" display="icon"/> 
-		     	</td>    
-		     </tr>            
-	         <tr>
-		     	<td><p:commandButton id="addUser" value="Add"  ajax="false"/></td>
-		     	<td><p:commandButton id="reset" value="Reset" ajax="false"/></td>
-		     </tr>   
-	     </table>
-     </h:form>      
-</h:body>
-</html> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/common/template.xhtml">
+	<ui:define name="headerInclude">
+		<link href="../css/usermanagement.css?ver=1" rel="stylesheet" type="text/css" />
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="loginForm">
+			<p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true" />
+			<h:panelGrid  layout="block" styleClass="wrapperTable">
+			<p:panel rendered="true" styleClass="login-div" header="XXXXXXXX" id="loginPanel">
+				<h:panelGrid columns="2" cellpadding="5" layout="block">
+					<p:outputLabel for="trigram" value="#{tk.login_login}" />
+					<p:inputText id="trigram" 
+						required="true"
+						requiredMessage="#{tk.login_login_required}" />
+
+					<p:outputLabel for="password" value="#{tk.login_password}" />
+					<p:password id="password"
+						required="true"
+						label="password" requiredMessage="#{tk.login_password_password}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="#{tk.login_submit}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only RedButton"
+							update="loginForm:loginPanel" />
+					</f:facet>
+				</h:panelGrid>
+			</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

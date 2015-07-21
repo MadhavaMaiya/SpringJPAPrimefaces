@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" encoding="UTF-8">
+	<h:head>
+		<!-- Added this for IE compatible -->
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+			<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+			<meta content="yes" name="apple-mobile-web-app-capable"/>
+			<link href="../../css/usermanagement.css?ver=1" rel="stylesheet"
+				type="text/css" />
+			<title>Error page</title>
+		</f:facet>
+		<ui:insert name="headerInclude" />
+	</h:head>
+	<h:body styleClass="RedModena Geometry" style="height: auto;">
+		<h:panelGroup layout="block" styleClass="Wid90 DispBlock MarAuto MarTopPerc10 TexAlCenter">
+			<h:panelGroup layout="block" styleClass="Wid33 MarAuto WidAutoOnMobile">
+				<h:panelGroup layout="block" styleClass="EmptyBox30"></h:panelGroup>
+				<h:panelGroup layout="block" styleClass="Card ShadowEffect">
+					<h:panelGroup layout="block" styleClass="EmptyBox40"></h:panelGroup>
+					<i class="fa fa-warning Fs100 Red"></i>
+					<h:panelGroup layout="block" styleClass="Wid100 OvHidden Fs30 Red">Error Exception Occured!</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="Wid100 OvHidden Fs20 BoldGray">Please contact system administrator.</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="EmptyBox20"></h:panelGroup>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular Gray">
+					<i class="fa fa-copyright"></i> Madhava Maiya All rights reserved. 
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:body>
+</f:view>
+</html>

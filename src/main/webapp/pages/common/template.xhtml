@@ -3,120 +3,107 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core" lang="#{localeBean.localeCode}">
+	xmlns:f="http://java.sun.com/jsf/core">
 
-<f:view contentType="text/html" encoding="UTF-8"
-	locale="#{localeBean.locale}">
+<f:view contentType="text/html" encoding="UTF-8">
 	<h:head>
 		<!-- Added this for IE compatible -->
 		<f:facet name="first">
 			<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 			<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 			<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+			<meta content="yes" name="apple-mobile-web-app-capable"/>
+			<link href="../../css/usermanagement.css?ver=1" rel="stylesheet" type="text/css" />
 			<title>#{tk.template_title}</title>
 		</f:facet>
-		<ui:insert name="headerInclude"></ui:insert>
+		<ui:insert name="headerInclude"/>
 	</h:head>
-	<h:body>
-		<h:panelGroup layout="block" styleClass="innerWrapper">
-			<h:panelGroup id="head" layout="block"
-				styleClass="ui-widget-header ui-corner-all"
-				style="text-align: center; height: 55px">
-				<h:panelGroup styleClass="logoDiv" layout="block">
-					<p:graphicImage value="/resources/common/images/logo.png"
-						styleClass="cssLogo" />
-				</h:panelGroup>
-				<h:panelGroup styleClass="ndfHeader" layout="block">
-					<p:outputLabel value="#{tk.application_title}" styleClass="ui-outputlabel" />
-				</h:panelGroup>
-				<h:form>
-					<h:panelGroup styleClass="localeDiv" layout="block">
-						<h:panelGrid columns="3">
-							<p:commandLink rendered="#{localeBean.localeCode ne 'en_US'}"
-								title="#{tk.english_us}" style="float:right; !important;"
-								actionListener="#{localeBean.changeLanguage}" immediate="true"
-								action="#{localeBean.switchToSameView}">
-								<h:graphicImage url="/resources/common/images/us_unselected.png" />
-								<f:attribute name="lang" value="en_US" />
-							</p:commandLink>
-							<p:commandLink rendered="#{localeBean.localeCode eq 'en_US'}"
-								title="#{tk.english_us}" style="float:right; !important;"
-								actionListener="#{localeBean.changeLanguage}" immediate="true"
-								action="#{localeBean.switchToSameView}">
-								<h:graphicImage url="/resources/common/images/us_selected.png" />
-								<f:attribute name="lang" value="en_US" />
-							</p:commandLink>
-							<p:separator styleClass="fa fa-ellipsis-v flagSeperator" />
-							<p:commandLink rendered="#{localeBean.localeCode ne 'fr_FR'}"
-								title="#{tk.french}" style="float:left; !important;"
-								actionListener="#{localeBean.changeLanguage}" immediate="true"
-								action="#{localeBean.switchToSameView}">
-								<h:graphicImage
-									url="/resources/common/images/french_unselected.png" />
-								<f:attribute name="lang" value="fr_FR" />
-							</p:commandLink>
-							<p:commandLink rendered="#{localeBean.localeCode eq 'fr_FR'}"
-								title="#{tk.french}" style="float:left; !important;"
-								actionListener="#{localeBean.changeLanguage}" immediate="true"
-								action="#{localeBean.switchToSameView}">
-								<h:graphicImage
-									url="/resources/common/images/french_selected.png" />
-								<f:attribute name="lang" value="fr_FR" />
-							</p:commandLink>
-							<p:commandLink styleClass="userInfo"
-								rendered="#{userSession.userId ne null}">
-								<i class="fa fa-user"></i>
-								<h:outputText value=" #{tk.menu_welcome} #{userSession.fullName}"
-									id="userInfo" styleClass="userInfo"
-									rendered="#{userSession.userId ne null}" />
-							</p:commandLink>
-							<p:separator styleClass="fa fa-ellipsis-v flagSeperator"
-								rendered="#{userSession.userId ne null}" />
-							<p:commandLink styleClass="logoutFont"
-								action="#{authenticateController.logout}" ajax="false"
-								immediate="true"
-								rendered="#{userSession.userId ne null}">
-								<i class="fa fa-sign-out"></i>
-								<h:outputText value=" #{tk.menu_logout}"
-									id="logout" styleClass="logoutFont"
-									rendered="#{userSession.userId ne null}" />
-							</p:commandLink>
+	
+	<h:body  styleClass="GrayModena Geometry" style="height: auto;">
+    <!-- TOPBAR START -->
+    <h:panelGroup layout="block" id="layout-topbar">
+        <a id="mobile-menu-button">
+            <span class="ButtonLine" id="ButtonLine1"></span>
+            <span class="ButtonLine" id="ButtonLine2"></span>
+            <span class="ButtonLine" id="ButtonLine3"></span>
+        </a>
+        <a id="logo"><p:graphicImage value="../images/maiya.png" styleClass="Fleft"/>
+        </a>
+        
+        <a id="show-top-menu" class="ShowOnMobile ripplelink"><i class="icon-more_vert" id="active"></i><i class="icon-close DispNone" id="passive"></i> </a>
+        
+        <ul id="top-menu">
+            <li>
+                <a class="ripplelink"><i class="fa fa-bell"></i> <span class="ShowOnMobile">Notifications</span></a>
+            </li>
+            <li>
+                <a class="ripplelink"><i class="fa fa-cog"></i> <span class="ShowOnMobile">Settings</span></a>
+            </li>
+            <li>
+                <a class="ripplelink"><i class="fa fa-power-off"></i> <span class="ShowOnMobile">System</span></a>
+            </li>
+        </ul>
+    </h:panelGroup>
+    <!-- TOPBAR END -->
+		<h:panelGroup layout="block" id="wrapper">
+			<h:panelGroup layout="block" id="wrapperIndent">
 
-						</h:panelGrid>
+				<h:panelGroup layout="block" id="layout-menu-cover" class="Animated05 ps-container">
+					<h:panelGroup layout="block" class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+						<h:panelGroup layout="block" class="ps-scrollbar-x" style="left: 0px; width: 0px;"></h:panelGroup>
 					</h:panelGroup>
-				</h:form>
-			</h:panelGroup>
+					<h:panelGroup layout="block" class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
+						<h:panelGroup layout="block" class="ps-scrollbar-y" style="top: 0px; height: 0px;"></h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
 
-			<h:panelGroup layout="block" id="pt_pgl5" styleClass="innerWrapper"
-				rendered="#{userSession.userId ne null}">
-				<ui:include src="navigation.xhtml" />
-			</h:panelGroup>
-		</h:panelGroup>
-		<h:panelGroup layout="block" styleClass="innerWrapper">
-			<ui:insert name="body">
-				<h:outputText value="#{tk.template_body}" />
-			</ui:insert>
-			<p:ajaxStatus styleClass="ajaxLodingStatus">
-				<f:facet name="start">
-					<p:graphicImage value="/resources/common/images/ajax-loader.gif" />
-				</f:facet>
-				<f:facet name="complete">
-					<h:outputLabel value="" />
-				</f:facet>
-			</p:ajaxStatus>
-			<p:ajaxExceptionHandler
-				type="javax.faces.application.ViewExpiredException"
-				update="exceptionDialog" onexception="PF('exceptionDialog').show();" />
-			<p:dialog id="exceptionDialog" header="#{tk.page_expired}"
-				modal="true" widgetVar="exceptionDialog">
-				<h:outputText value="#{tk.click_ok}" escape="false" />
-				<br />
-				<p:button onclick="document.location.href = document.location.href;"
-					value="#{tk.ok}"
-					rendered="#{pfExceptionHandler.type == 'javax.faces.application.ViewExpiredException'}" />
-			</p:dialog>
-			<h:panelGroup layout="block" styleClass="innerWrapper">
-				<ui:include src="footer.xhtml" />
+				<h:panelGroup layout="block" id="layout-portlets-cover">
+					<h:panelGroup layout="block" class="Container96 Fnone MarAuto">
+
+						<h:panelGroup layout="block" class="Container100">
+							<h:panelGroup layout="block" class="ContainerIndent">
+								<h:panelGroup layout="block" class="TexAlRight">
+									<a class="DispInlBlock Fright BoldGray MarRight10 HoverEffect"
+										href="#"> <span class="Fs22 FontRobotoLight">Madhava
+											Maiya, Welcome </span> <i class="fa fa-user Fright Fs30"></i>
+									</a>
+								</h:panelGroup>
+								<h:panelGroup layout="block" class="EmptyBox10"></h:panelGroup>
+								<ui:insert name="body">
+									<h:outputText value="body" />
+								</ui:insert>
+								<p:ajaxStatus styleClass="ajaxLodingStatus" style="width: 32px; height: 32px; position: fixed; right: 7px; bottom: 7px">
+									<f:facet name="start">
+										<p:graphicImage value="../images/preloader.gif" styleClass="Fleft"/>
+									</f:facet>
+									<f:facet name="complete">
+										<h:outputLabel value="" />
+									</f:facet>
+								</p:ajaxStatus>
+								<p:ajaxExceptionHandler
+									type="javax.faces.application.ViewExpiredException"
+									update="exceptionDialog"
+									onexception="PF('exceptionDialog').show();" />
+								<p:dialog id="exceptionDialog" header="Page Expired"
+									modal="true" widgetVar="exceptionDialog">
+									<h:outputText value="Ok" escape="false" />
+									<br />
+									<p:button
+										onclick="document.location.href = document.location.href;"
+										value="#{tk.ok}"
+										rendered="#{pfExceptionHandler.type == 'javax.faces.application.ViewExpiredException'}" />
+								</p:dialog>
+							</h:panelGroup>
+						</h:panelGroup>
+
+						<!-- footer -->
+						<h:panelGroup layout="block" class="Container100">
+							<h:panelGroup layout="block" class="ContainerIndent TexAlCenter Fs14 BoldGray">
+								Madhava Maiya | All Rights Reserved.</h:panelGroup>
+						</h:panelGroup>
+
+					</h:panelGroup>
+				</h:panelGroup>
 			</h:panelGroup>
 		</h:panelGroup>
 	</h:body>
