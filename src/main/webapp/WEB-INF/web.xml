@@ -88,7 +88,16 @@
 		<url-pattern>*.jsf</url-pattern>
 	</filter-mapping>
 
-
+	<session-config>
+		<!-- session life time in minutes -->
+		<session-timeout>20</session-timeout>
+	</session-config>
+	
+	<context-param>
+      <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+      <param-value>.xhtml</param-value>
+   </context-param>
+    
 	<!-- Welcome Page -->
 	<welcome-file-list>
 		<welcome-file>/pages/index.xhtml</welcome-file>

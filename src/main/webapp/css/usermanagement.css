@@ -4080,8 +4080,8 @@ body {
     width: auto;
 }
 #logo img {
-    height: 155px;
-    margin: 8px 0 0 10px;
+    height: 25px;
+    margin: -5px 0 0 10px;
 }
 #top-menu {
     float: right;

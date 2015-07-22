@@ -67,8 +67,8 @@ public class Preferences implements Serializable {
 	private Long defaultPageId;
 
 	@Enumerated(value=EnumType.STRING) 
-	@Column(name="THEME")
-	private Theme theme = Theme.EMERALDTOWN;
+	@Column(name="THEME",nullable=false, length=1)
+	private Theme theme = Theme.ARISTO;
 	
 	@Column(name="LANGUAGE")
 	private String language="en";

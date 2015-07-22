@@ -7,6 +7,8 @@ insert into test.lookupcategory values(4,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'
 insert into test.lookupcategory values(5,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'USERTYPE',1);
 insert into test.lookupcategory values(6,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FEATURE_CATEGORY',1);
 insert into test.lookupcategory values(7,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'PRIVILEGETYPE',1);
+insert into test.lookupcategory values(8,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FEATURETYPE',1);
+insert into test.lookupcategory values(9,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'DEPARTMENT_TYPE',1);
 //Lookup Entity
 insert into test.lookupentity values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Male','SEX01','MALE',1,1);
 insert into test.lookupentity values(2,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'FEMALE','SEX01','FEMALE',1,1);
@@ -23,6 +25,11 @@ insert into test.lookupentity values(12,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'A
 insert into test.lookupentity values(13,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'EMPLOYEE','FEATURE_CATEGORY001','EMPLOYEE',1,6);
 insert into test.lookupentity values(14,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'AUTO','PRIVILEGETYPE001','AUTO',1,7);
 insert into test.lookupentity values(15,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'ASSIGNED','PRIVILEGETYPE002','ASSIGNED',1,7);
+insert into test.lookupentity values(16,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Master','FEATURETYPE01','Master',1,8);
+insert into test.lookupentity values(17,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Report','FEATURETYPE02','Report',1,8);
+insert into test.lookupentity values(18,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Clinical','DEPT_TYPE01','Clinical',1,9);
+insert into test.lookupentity values(19,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'Non-Clinical','DEPT_TYPE02','Non-Clinical',1,9);
+
 //Country
 insert into test.country values(1,'IND','INDIA',1,'2014-08-23 19:25:38',NULL,NULL,1,'+91-',1,1,'INDIAN',1,NULL);
 //State
@@ -39,3 +46,9 @@ insert into test.orgstructure values(2,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'MI
 //User
 insert into test.enterpriseuser values(1,'madhava.maiya@gmail.com',1,1,1,NULL,1,0,0,'63c0ebe8a05bbbc7eecece89ed414e02',0,0,NULL,NULL,"Madhava Maiya","MAIYAM",12);
 insert into test.hisuser values(1,1,"MAIYAM");
+//Department
+insert into test.department values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,1,'CARD001','CARDIOLOGY',1,'Department of cardiology','MAIYAM',NULL,'2014-08-23 19:25:38',2,18);
+//Feature
+insert into test.feature values(1,1,'2014-08-23 19:25:38',NULL,NULL,1,"Default Page","Default Page",1,"/pages/index.jsf",NULL,1,13,16);
+//Preferences
+insert into test.preferences values(1,1,'en','ARISTO','MAIYAM',1,2,1);

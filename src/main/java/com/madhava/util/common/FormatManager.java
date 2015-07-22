@@ -457,4 +457,16 @@ public class FormatManager {
 			Collection<? extends Object> myCollection) {
 		return ((myCollection != null) && (!myCollection.isEmpty()));
 	}
+	
+	/**
+	 * Method isFilled
+	 * @author Madhava
+	 * @since Jul 22, 2015 - 10:45:51 AM
+	 * @version UserManagement 1.0
+	 * @param myMap
+	 * @return
+	 */
+	public static final boolean isFilled(Map<? extends Object,? extends Object> myMap){
+		return isMapFilled(myMap);
+	}
 }

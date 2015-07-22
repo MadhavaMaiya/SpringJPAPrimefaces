@@ -30,7 +30,7 @@ public class Feature extends BaseDomain {
 	private static final long serialVersionUID = -8004062604610564758L;
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="FEATURE_ID")
+	@Column(name="featureId")
 	private Long featureId;
 	@Column(name="FEATUREDESC")
 	private String featureDesc;
